@@ -1,5 +1,5 @@
 {
-  "name": "prettus/l5-repository",
+  "name": "team-reflex/laravel-repository",
   "description": "Laravel 5 - Repositories to  the database layer",
   "keywords": ["laravel", "repository", "eloquent", "model", "cache"],
   "license": "MIT",
@@ -28,7 +28,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Prettus\\Repository\\": "src/Prettus/Repository/"
+      "Reflex\\Repository\\": "src/Reflex/Repository/"
     }
   },
   "config": {

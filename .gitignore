@@ -1,3 +1,5 @@
 .idea/
 composer.phar
 vendor/
+*.sublime-project
+*.sublime-workspace

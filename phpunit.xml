@@ -11,7 +11,7 @@
          syntaxCheck="false"
         >
     <testsuites>
-        <testsuite name="Prettus Repository Test Suite">
+        <testsuite name="Reflex Repository Test Suite">
             <directory suffix=".php">./tests/</directory>
         </testsuite>
     </testsuites>

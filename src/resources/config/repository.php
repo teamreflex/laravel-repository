@@ -1,7 +1,7 @@
 <?php
 /*
 |--------------------------------------------------------------------------
-| Prettus Repository Config
+| Reflex Repository Config
 |--------------------------------------------------------------------------
 |
 |
@@ -116,7 +116,7 @@ return [
             |--------------------------------------------------------------------------
             |
             |
-            | Ex: http://prettus.local/?search=lorem&skipCache=true
+            | Ex: http://reflex.local/?search=lorem&skipCache=true
             |
             */
             'skipCache' => 'skipCache'
@@ -181,26 +181,26 @@ return [
         | Params :
         |
         | - search : Searched value
-        |   Ex: http://prettus.local/?search=lorem
+        |   Ex: http://reflex.local/?search=lorem
         |
         | - searchFields : Fields in which research should be carried out
         |   Ex:
-        |    http://prettus.local/?search=lorem&searchFields=name;email
-        |    http://prettus.local/?search=lorem&searchFields=name:like;email
-        |    http://prettus.local/?search=lorem&searchFields=name:like
+        |    http://reflex.local/?search=lorem&searchFields=name;email
+        |    http://reflex.local/?search=lorem&searchFields=name:like;email
+        |    http://reflex.local/?search=lorem&searchFields=name:like
         |
         | - filter : Fields that must be returned to the response object
         |   Ex:
-        |   http://prettus.local/?search=lorem&filter=id,name
+        |   http://reflex.local/?search=lorem&filter=id,name
         |
         | - orderBy : Order By
         |   Ex:
-        |   http://prettus.local/?search=lorem&orderBy=id
+        |   http://reflex.local/?search=lorem&orderBy=id
         |
         | - sortedBy : Sort
         |   Ex:
-        |   http://prettus.local/?search=lorem&orderBy=id&sortedBy=asc
-        |   http://prettus.local/?search=lorem&orderBy=id&sortedBy=desc
+        |   http://reflex.local/?search=lorem&orderBy=id&sortedBy=asc
+        |   http://reflex.local/?search=lorem&orderBy=id&sortedBy=desc
         |
         */
         'params'             => [
@@ -217,17 +217,19 @@ return [
     | Generator Config
     |--------------------------------------------------------------------------
     |
+    | You can use $NAME$ to substitute the entity name into the path.
+    |
     */
     'generator'  => [
         'basePath'      => app_path(),
         'rootNamespace' => 'App\\',
         'paths'         => [
-            'models'       => 'Entities',
-            'repositories' => 'Repositories',
-            'interfaces'   => 'Repositories',
-            'transformers' => 'Transformers',
-            'presenters'   => 'Presenters',
-            'validators'   => 'Validators',
+            'models'       => 'Entities/$NAME$',
+            'repositories' => 'Entities/$NAME$/Repository',
+            'interfaces'   => 'Entities/$NAME$/Repository',
+            'transformers' => 'Entities/$NAME$',
+            'presenters'   => 'Entities/$NAME$',
+            'validators'   => 'Entities/$NAME$',
             'controllers'  => 'Http/Controllers',
             'provider'     => 'RepositoryServiceProvider',
         ]
