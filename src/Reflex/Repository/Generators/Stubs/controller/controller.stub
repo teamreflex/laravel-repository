@@ -5,10 +5,10 @@ $NAMESPACE$
 use Illuminate\Http\Request;
 
 use $APPNAME$Http\Requests;
-use Reflex\Validator\Contracts\ValidatorInterface;
-use Reflex\Validator\Exceptions\ValidatorException;
-use $APPNAME$Http\Requests\$CLASS$CreateRequest;
-use $APPNAME$Http\Requests\$CLASS$UpdateRequest;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
+use $APPNAME$Entities\$CLASS$\Requests\$CLASS$CreateRequest;
+use $APPNAME$Entities\$CLASS$\Requests\$CLASS$UpdateRequest;
 $REPOSITORY$
 $VALIDATOR$
 

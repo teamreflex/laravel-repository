@@ -2,8 +2,8 @@
 
 $NAMESPACE$
 
-use \Reflex\Validator\Contracts\ValidatorInterface;
-use \Reflex\Validator\LaravelValidator;
+use \Prettus\Validator\Contracts\ValidatorInterface;
+use \Prettus\Validator\LaravelValidator;
 
 class $CLASS$Validator extends LaravelValidator {
 

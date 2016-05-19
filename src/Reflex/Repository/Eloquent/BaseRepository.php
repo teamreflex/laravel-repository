@@ -18,8 +18,8 @@ use Reflex\Repository\Events\RepositoryEntityCreated;
 use Reflex\Repository\Events\RepositoryEntityDeleted;
 use Reflex\Repository\Events\RepositoryEntityUpdated;
 use Reflex\Repository\Exceptions\RepositoryException;
-use Reflex\Validator\Contracts\ValidatorInterface;
-use Reflex\Validator\Exceptions\ValidatorException;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class BaseRepository
@@ -129,7 +129,7 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
     }
 
     /**
-     * Specify Validator class name of Reflex\Validator\Contracts\ValidatorInterface
+     * Specify Validator class name of Prettus\Validator\Contracts\ValidatorInterface
      *
      * @return null
      * @throws Exception
@@ -138,8 +138,8 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
     {
 
         if (isset($this->rules) && !is_null($this->rules) && is_array($this->rules) && !empty($this->rules)) {
-            if (class_exists('Reflex\Validator\LaravelValidator')) {
-                $validator = app('Reflex\Validator\LaravelValidator');
+            if (class_exists('Prettus\Validator\LaravelValidator')) {
+                $validator = app('Prettus\Validator\LaravelValidator');
                 if ($validator instanceof ValidatorInterface) {
                     $validator->setRules($this->rules);
 
