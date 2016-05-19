@@ -5,17 +5,11 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Anderson Andrade",
-      "email": "contato@andersonandra.de",
+      "name": "Kyle Ward",
+      "email": "kairu@team-reflex.com",
       "role": "Developer"
     }
   ],
-  "support": {
-    "email": "contato@andersonandra.de",
-    "issues":"https://github.com/andersao/l5-repository/issues",
-    "wiki":"https://github.com/andersao/l5-repository",
-    "source":"https://github.com/andersao/l5-repository"
-  },
   "require": {
     "illuminate/http": "~5.0",
     "illuminate/config": "~5.0",
@@ -37,11 +31,6 @@
   "suggest": {
     "league/fractal": "Required to use the Fractal Presenter (0.12.*).",
     "robclancy/presenter": "Required to use the Presenter Model (1.3.*)"
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-develop": "2.2-dev"
-    }
   },
   "minimum-stability": "stable"
 }
