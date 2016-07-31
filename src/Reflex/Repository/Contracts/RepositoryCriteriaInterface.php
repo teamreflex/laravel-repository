@@ -3,7 +3,6 @@ namespace Reflex\Repository\Contracts;
 
 use Illuminate\Support\Collection;
 
-
 /**
  * Interface RepositoryCriteriaInterface
  * @package Reflex\Repository\Contracts

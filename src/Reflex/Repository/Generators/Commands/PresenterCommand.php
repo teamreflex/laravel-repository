@@ -40,7 +40,6 @@ class PresenterCommand extends Command
      */
     public function fire()
     {
-
         try {
             (new PresenterGenerator([
                 'name'  => $this->argument('name'),

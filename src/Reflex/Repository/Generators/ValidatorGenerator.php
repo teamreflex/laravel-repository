@@ -65,7 +65,6 @@ class ValidatorGenerator extends Generator
      */
     public function getReplacements()
     {
-
         return array_merge(parent::getReplacements(), [
             'rules' => $this->getRules(),
         ]);

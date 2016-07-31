@@ -119,7 +119,6 @@ trait CacheableRepository
      */
     public function getCacheKey($method, $args = null)
     {
-
         $request = app('Illuminate\Http\Request');
         $args = serialize($args);
         $criteria = $this->serializeCriteria();
@@ -128,7 +127,6 @@ trait CacheableRepository
         CacheKeys::putKey(get_called_class(), $key);
 
         return $key;
-
     }
 
     /**

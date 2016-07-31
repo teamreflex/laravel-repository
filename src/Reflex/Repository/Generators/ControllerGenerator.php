@@ -62,7 +62,6 @@ class ControllerGenerator extends Generator
      */
     public function getControllerName()
     {
-
         return ucfirst($this->getPluralName());
     }
 
@@ -73,7 +72,6 @@ class ControllerGenerator extends Generator
      */
     public function getPluralName()
     {
-
         return str_plural(lcfirst(ucwords($this->getClass())));
     }
 
@@ -84,7 +82,6 @@ class ControllerGenerator extends Generator
      */
     public function getReplacements()
     {
-
         return array_merge(parent::getReplacements(), [
             'controller' => $this->getControllerName(),
             'plural'     => $this->getPluralName(),

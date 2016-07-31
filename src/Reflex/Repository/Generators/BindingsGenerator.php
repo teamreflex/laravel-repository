@@ -117,7 +117,6 @@ class BindingsGenerator extends Generator
      */
     public function getReplacements()
     {
-
         return array_merge(parent::getReplacements(), [
             'repository' => $this->getRepository(),
             'eloquent' => $this->getEloquentRepository(),

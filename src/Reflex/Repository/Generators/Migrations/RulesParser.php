@@ -97,8 +97,6 @@ class RulesParser implements Arrayable
      */
     public function getAttributes($column, $rules)
     {
-
         return str_replace($column . '=>', '', $rules);
     }
-
 }

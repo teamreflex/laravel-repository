@@ -45,7 +45,6 @@ class RequestCriteria implements CriteriaInterface
         $sortedBy = !empty($sortedBy) ? $sortedBy : 'asc';
 
         if ($search && is_array($fieldsSearchable) && count($fieldsSearchable)) {
-
             $searchFields = is_array($searchFields) || is_null($searchFields) ? $searchFields : explode(';', $searchFields);
             $fields = $this->parserFieldsSearch($fieldsSearchable, $searchFields);
             $isFirstField = true;
@@ -57,7 +56,6 @@ class RequestCriteria implements CriteriaInterface
                 /** @var Builder $query */
 
                 foreach ($fields as $field => $condition) {
-
                     if (is_numeric($field)) {
                         $field = $condition;
                         $condition = "=";
@@ -76,28 +74,28 @@ class RequestCriteria implements CriteriaInterface
                     }
 
                     $relation = null;
-                    if(stripos($field, '.')) {
+                    if (stripos($field, '.')) {
                         $explode = explode('.', $field);
                         $field = array_pop($explode);
                         $relation = implode('.', $explode);
                     }
                     $modelTableName = $query->getModel()->getTable();
-                    if ( $isFirstField || $modelForceAndWhere ) {
+                    if ($isFirstField || $modelForceAndWhere) {
                         if (!is_null($value)) {
-                            if(!is_null($relation)) {
-                                $query->whereHas($relation, function($query) use($field,$condition,$value) {
-                                    $query->where($field,$condition,$value);
+                            if (!is_null($relation)) {
+                                $query->whereHas($relation, function ($query) use ($field, $condition,$value) {
+                                    $query->where($field, $condition, $value);
                                 });
                             } else {
-                                $query->where($modelTableName.'.'.$field,$condition,$value);
+                                $query->where($modelTableName.'.'.$field, $condition, $value);
                             }
                             $isFirstField = false;
                         }
                     } else {
                         if (!is_null($value)) {
-                            if(!is_null($relation)) {
-                                $query->orWhereHas($relation, function($query) use($field,$condition,$value) {
-                                    $query->where($field,$condition,$value);
+                            if (!is_null($relation)) {
+                                $query->orWhereHas($relation, function ($query) use ($field, $condition,$value) {
+                                    $query->where($field, $condition, $value);
                                 });
                             } else {
                                 $query->orWhere($modelTableName.'.'.$field, $condition, $value);
@@ -110,7 +108,7 @@ class RequestCriteria implements CriteriaInterface
 
         if (isset($orderBy) && !empty($orderBy)) {
             $split = explode('|', $orderBy);
-            if(count($split) > 1) {
+            if (count($split) > 1) {
                 /*
                  * ex.
                  * products|description -> join products on current_table.product_id = products.id order by description
@@ -123,7 +121,7 @@ class RequestCriteria implements CriteriaInterface
                 $sortColumn = $split[1];
 
                 $split = explode(':', $sortTable);
-                if(count($split) > 1) {
+                if (count($split) > 1) {
                     $sortTable = $split[0];
                     $keyName = $table.'.'.$split[1];
                 } else {
@@ -195,7 +193,6 @@ class RequestCriteria implements CriteriaInterface
      */
     protected function parserSearchValue($search)
     {
-
         if (stripos($search, ';') || stripos($search, ':')) {
             $values = explode(';', $search);
             foreach ($values as $value) {
@@ -250,7 +247,6 @@ class RequestCriteria implements CriteriaInterface
             if (count($fields) == 0) {
                 throw new \Exception(trans('repository::criteria.fields_not_accepted', ['field' => implode(',', $searchFields)]));
             }
-
         }
 
         return $fields;

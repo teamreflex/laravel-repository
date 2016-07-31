@@ -100,7 +100,6 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
      */
     public function boot()
     {
-
     }
 
     /**
@@ -136,7 +135,6 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
      */
     public function validator()
     {
-
         if (isset($this->rules) && !is_null($this->rules) && is_array($this->rules) && !empty($this->rules)) {
             if (class_exists('Prettus\Validator\LaravelValidator')) {
                 $validator = app('Prettus\Validator\LaravelValidator');
@@ -628,7 +626,7 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
      *
      * @return $this
      */
-    function whereHas($relation, $closure)
+    public function whereHas($relation, $closure)
     {
         $this->model = $this->model->whereHas($relation, $closure);
 
@@ -801,7 +799,6 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
      */
     protected function applyCriteria()
     {
-
         if ($this->skipCriteria === true) {
             return $this;
         }
@@ -861,7 +858,6 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
     public function parserResult($result)
     {
         if ($this->presenter instanceof PresenterInterface) {
-
             if ($result instanceof Collection || $result instanceof LengthAwarePaginator) {
                 $result->each(function ($model) {
                     if ($model instanceof Presentable) {

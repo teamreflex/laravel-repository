@@ -130,7 +130,6 @@ class RepositoryEloquentGenerator extends Generator
             "\\",
             '/'
         ], '\\', $validator) . 'Validator';
-
     }
 
 
@@ -143,6 +142,5 @@ class RepositoryEloquentGenerator extends Generator
         $class = $this->getClass();
 
         return '/**' . PHP_EOL . '    * Specify Validator class name' . PHP_EOL . '    *' . PHP_EOL . '    * @return mixed' . PHP_EOL . '    */' . PHP_EOL . '    public function validator()' . PHP_EOL . '    {' . PHP_EOL . PHP_EOL . '        return ' . $class . 'Validator::class;' . PHP_EOL . '    }' . PHP_EOL;
-
     }
 }

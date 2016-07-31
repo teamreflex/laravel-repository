@@ -72,7 +72,6 @@ abstract class FractalPresenter implements PresenterInterface
      */
     protected function parseIncludes()
     {
-
         $request = app('Illuminate\Http\Request');
         $paramIncludes = config('repository.fractal.params.include', 'include');
 
