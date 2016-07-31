@@ -50,6 +50,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->commands('Reflex\Repository\Generators\Commands\ControllerCommand');
         $this->commands('Reflex\Repository\Generators\Commands\BindingsCommand');
         $this->app->register('Reflex\Repository\Providers\EventServiceProvider');
+        $this->commands('Reflex\Repository\Generators\Commands\CriteriaCommand');
     }
 
 

@@ -105,7 +105,6 @@ class ControllerGenerator extends Generator
         return str_singular(lcfirst(ucwords($this->getClass())));
     }
 
-
     /**
      * Gets validator full class name
      *

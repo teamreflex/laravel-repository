@@ -224,14 +224,16 @@ return [
         'basePath'      => app_path(),
         'rootNamespace' => 'App\\',
         'paths'         => [
-            'models'       => 'Entities/$NAME$',
-            'repositories' => 'Entities/$NAME$/Repository',
-            'interfaces'   => 'Entities/$NAME$/Repository',
-            'transformers' => 'Entities/$NAME$',
-            'presenters'   => 'Entities/$NAME$',
-            'validators'   => 'Entities/$NAME$',
-            'controllers'  => 'Http/Controllers',
+            'models'       => 'Entities\$NAME$',
+            'repositories' => 'Entities\$NAME$\Repository',
+            'interfaces'   => 'Entities\$NAME$\Repository',
+            'transformers' => 'Entities\$NAME$',
+            'presenters'   => 'Entities\$NAME$',
+            'validators'   => 'Entities\$NAME$',
+            'controllers'  => 'Http\Controllers',
             'provider'     => 'RepositoryServiceProvider',
+            'criteria'     => 'Entities\$NAME$\Criteria',
+            'stubsOverridePath' => app_path()
         ]
     ]
 ];
