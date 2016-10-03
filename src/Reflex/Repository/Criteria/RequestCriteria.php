@@ -50,7 +50,7 @@ class RequestCriteria implements CriteriaInterface
             $isFirstField = true;
             $searchData = $this->parserSearchData($search);
             $search = $this->parserSearchValue($search);
-            $modelForceAndWhere = false;
+            $modelForceAndWhere = ($this->request->get(config('repository.criteria.params.and', false), false) == '1');
 
             $model = $model->where(function ($query) use ($fields, $search, $searchData, $isFirstField, $modelForceAndWhere) {
                 /** @var Builder $query */
