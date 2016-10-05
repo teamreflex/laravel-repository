@@ -159,7 +159,7 @@ class RequestCriteria implements CriteriaInterface
             $model = $model->with($with);
         }
 
-        if ($paginate) {
+        if (isset($paginate) && !empty($paginate)) {
             $model = $model->paginate($paginate);
         }
 
