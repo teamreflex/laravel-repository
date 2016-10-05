@@ -43,6 +43,7 @@ class RequestCriteria implements CriteriaInterface
         $sortedBy = $this->request->get(config('repository.criteria.params.sortedBy', 'sortedBy'), 'asc');
         $with = $this->request->get(config('repository.criteria.params.with', 'with'), null);
         $sortedBy = !empty($sortedBy) ? $sortedBy : 'asc';
+        $paginate = $this->request->get(config('repository.criteria.params.paginate', 'paginate'), null);
 
         if ($search && is_array($fieldsSearchable) && count($fieldsSearchable)) {
             $searchFields = is_array($searchFields) || is_null($searchFields) ? $searchFields : explode(';', $searchFields);
@@ -156,6 +157,10 @@ class RequestCriteria implements CriteriaInterface
         if ($with) {
             $with = explode(';', $with);
             $model = $model->with($with);
+        }
+
+        if ($paginate) {
+            $model = $model->paginate($paginate);
         }
 
         return $model;

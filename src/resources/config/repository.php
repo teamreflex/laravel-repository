@@ -211,6 +211,7 @@ return [
             'sortedBy'     => 'sortedBy',
             'with'         => 'with',
             'and'          => 'and',
+            'paginate'     => 'paginate',
         ]
     ],
     /*
