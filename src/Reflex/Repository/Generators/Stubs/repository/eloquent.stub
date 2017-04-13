@@ -25,7 +25,6 @@ class $CLASS$RepositoryEloquent extends BaseRepository implements $CLASS$Reposit
     }
 
     $VALIDATOR$
-
     /**
      * Boot up the repository, pushing criteria
      */
