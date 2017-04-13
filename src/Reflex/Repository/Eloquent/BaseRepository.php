@@ -253,7 +253,7 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
     /**
      * Retrieve data array for populate field select
      *
-     * @param string      $column
+     * @param string $column
      * @param string|null $key
      *
      * @return \Illuminate\Support\Collection|array
@@ -261,8 +261,50 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
     public function lists($column, $key = null)
     {
         $this->applyCriteria();
-        
+
         return $this->model->lists($column, $key);
+    }
+
+    /**
+     * Retrieve data array for populate field select
+     * Compatible with Laravel 5.3
+     * @param string $column
+     * @param string|null $key
+     *
+     * @return \Illuminate\Support\Collection|array
+     */
+    public function pluck($column, $key = null)
+    {
+        $this->applyCriteria();
+
+        return $this->model->pluck($column, $key);
+    }
+
+    /**
+     * Sync relations
+     *
+     * @param $id
+     * @param $relation
+     * @param $attributes
+     * @param bool $detaching
+     * @return mixed
+     */
+    public function sync($id, $relation, $attributes, $detaching = true)
+    {
+        return $this->find($id)->{$relation}()->sync($attributes, $detaching);
+    }
+
+    /**
+     * SyncWithoutDetaching
+     *
+     * @param $id
+     * @param $relation
+     * @param $attributes
+     * @return mixed
+     */
+    public function syncWithoutDetaching($id, $relation, $attributes)
+    {
+        return $this->sync($id, $relation, $attributes, false);
     }
 
     /**
@@ -310,10 +352,56 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
     }
 
     /**
+     * Retrieve first data of repository, or return new Entity
+     *
+     * @param array $attributes
+     *
+     * @return mixed
+     */
+    public function firstOrNew(array $attributes = [])
+    {
+        $this->applyCriteria();
+        $this->applyScope();
+
+        $temporarySkipPresenter = $this->skipPresenter;
+        $this->skipPresenter(true);
+
+        $model = $this->model->firstOrNew($attributes);
+        $this->skipPresenter($temporarySkipPresenter);
+
+        $this->resetModel();
+
+        return $this->parserResult($model);
+    }
+
+    /**
+     * Retrieve first data of repository, or create new Entity
+     *
+     * @param array $attributes
+     *
+     * @return mixed
+     */
+    public function firstOrCreate(array $attributes = [])
+    {
+        $this->applyCriteria();
+        $this->applyScope();
+
+        $temporarySkipPresenter = $this->skipPresenter;
+        $this->skipPresenter(true);
+
+        $model = $this->model->firstOrCreate($attributes);
+        $this->skipPresenter($temporarySkipPresenter);
+
+        $this->resetModel();
+
+        return $this->parserResult($model);
+    }
+
+    /**
      * Retrieve all data of repository, paginated
      *
-     * @param null   $limit
-     * @param array  $columns
+     * @param null $limit
+     * @param array $columns
      * @param string $method
      *
      * @return mixed
@@ -333,7 +421,7 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
     /**
      * Retrieve all data of repository, simple paginated
      *
-     * @param null  $limit
+     * @param null $limit
      * @param array $columns
      *
      * @return mixed
@@ -413,6 +501,7 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
     public function findWhereIn($field, array $values, $columns = ['*'])
     {
         $this->applyCriteria();
+        $this->applyScope();
         $model = $this->model->whereIn($field, $values)->get($columns);
         $this->resetModel();
 
@@ -431,6 +520,7 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
     public function findWhereNotIn($field, array $values, $columns = ['*'])
     {
         $this->applyCriteria();
+        $this->applyScope();
         $model = $this->model->whereNotIn($field, $values)->get($columns);
         $this->resetModel();
 
@@ -582,7 +672,7 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
 
         $deleted = $this->model->delete();
 
-        event(new RepositoryEntityDeleted($this, $this->model));
+        event(new RepositoryEntityDeleted($this, $this->model->getModel()));
 
         $this->skipPresenter($temporarySkipPresenter);
         $this->resetModel();
@@ -617,7 +707,19 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
 
         return $this;
     }
-    
+
+    /**
+     * Add subselect queries to count the relations.
+     *
+     * @param  mixed $relations
+     * @return $this
+     */
+    public function withCount($relations)
+    {
+        $this->model = $this->model->withCount($relations);
+        return $this;
+    }
+
     /**
      * Load relation with closure
      *
