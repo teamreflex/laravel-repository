@@ -2,6 +2,8 @@
 
 Laravel 5 Repositories is used to abstract the data layer, making our application more flexible to maintain.
 
+**Deprecated:** This was only forked to make it fit a project directory structure. Stupid, I know. Just use andersao/l5-repository or rinvex/laravel-repositories.
+
 You want to know a little more about the Repository pattern? [Read this great article](http://bit.ly/1IdmRNS).
 
 ## Fork
